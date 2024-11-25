@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Adivinhação</title>
+</head>
+<body>
+    <h1>Jogo de Adivinhação</h1>
+    <script>
+        let numeroSecreto = Math.floor(Math.random() * 11); 
+        let tentativas = 3;     
+
+        for (let i = 0; i < tentativas; i++) {
+            let chute = prompt("Tente adivinhar o número entre 0 e 10:");
+
+            if (Number(chute) === numeroSecreto) {
+                alert("Parabéns! Você acertou o número!");
+                break; 
+            } else {
+                alert("Você errou. Tente novamente!");
+            }
+
+            if (i === tentativas - 1) {
+                alert(`Você não acertou o número. O número correto era: ${numeroSecreto}`);
+            }
+        }
+    </script>
+</body>
+</html>

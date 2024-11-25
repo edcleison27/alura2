@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Escolhas de Carreira</title>
+</head>
+<body>
+    <h1>Jogo de Escolhas de Carreira</h1>
+    <script>
+       
+        let areaEscolhida = prompt("Você quer seguir para a área de Front-End ou para a área de Back-End?");
+
+       
+        let tecnologiaEscolhida;
+
+        if (areaEscolhida.toLowerCase() === "front-end") {
+            tecnologiaEscolhida = prompt("Você quer aprender React ou Vue?");
+        } else if (areaEscolhida.toLowerCase() === "back-end") {
+            tecnologiaEscolhida = prompt("Você quer aprender C# ou Java?");
+        } else {
+            alert("Opção inválida. Por favor, digite 'Front-End' ou 'Back-End'.");
+            throw new Error("Área não reconhecida.");
+        }
+
+      
+        let caminhoEscolhido = prompt("Você quer se especializar na área escolhida ou se tornar Fullstack?");
+
+     
+        if (caminhoEscolhido.toLowerCase() === "especializar") {
+            alert(`Você escolheu se especializar em ${areaEscolhida} com ${tecnologiaEscolhida}. Boa sorte!`);
+        } else if (caminhoEscolhido.toLowerCase() === "fullstack") {
+            alert(`Você escolheu se tornar Fullstack, aprendendo tanto ${areaEscolhida} quanto outras tecnologias. Boa sorte!`);
+        } else {
+            alert("Opção inválida para a especialização.");
+            throw new Error("Especialização não reconhecida.");
+        }
+
+     
+        let tecnologias = [];
+        let continuar = true;
+
+        while (continuar) {
+            let tecnologia = prompt("Tem mais alguma tecnologia que você gostaria de aprender?");
+            if (tecnologia) {
+                tecnologias.push(tecnologia);
+                alert(`Você adicionou a tecnologia ${tecnologia}.`);
+            }
+            continuar = confirm("Você quer adicionar mais tecnologias?");
+        }
+
+
+        alert("Aqui estão as tecnologias que você gostaria de aprender:");
+        for (let i = 0; i < tecnologias.length; i++) {
+            alert(`Tecnologia ${i + 1}: ${tecnologias[i]}`);
+        }
+
+
+        tecnologias.forEach(tech => {
+            if (tech.toLowerCase() === "react") {
+                alert("React é uma biblioteca muito popular para construir interfaces de usuário. Ótima escolha!");
+            } else if (tech.toLowerCase() === "vue") {
+                alert("Vue é uma framework progressiva que é fácil de aprender e muito poderosa.");
+            } else if (tech.toLowerCase() === "c#") {
+                alert("C# é uma linguagem poderosa e popular para o desenvolvimento de software, especialmente no ambiente Microsoft.");
+            } else if (tech.toLowerCase() === "java") {
+                alert("Java é uma linguagem versátil e amplamente usada no desenvolvimento de sistemas empresariais.");
+            } else {
+                alert(`${tech} é uma excelente tecnologia para aprender e está em constante evolução.`);
+            }
+        });
+    </script>
+</body>
+</html>

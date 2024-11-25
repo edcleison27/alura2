@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Compras</title>
+</head>
+<body>
+    <h1>Lista de Compras do Supermercado</h1>
+    <script>
+        let listaDeCompras = {
+            frutas: [],
+            laticinios: [],
+            congelados: [],
+            doces: [],
+            outros: []
+        };
+
+        function adicionarOuRemoverItem() {
+            let acao = prompt("Você deseja adicionar ou remover uma comida da sua lista de compras? (adicionar/remover)");
+
+            if (acao.toLowerCase() === "adicionar") {
+                adicionarItem();
+            } else if (acao.toLowerCase() === "remover" && temItensNaLista()) {
+                removerItem();
+            } else if (acao.toLowerCase() === "remover") {
+                alert("Não há itens para remover.");
+                adicionarOuRemoverItem(); 
+            } else {
+                alert("Opção inválida! Responda com 'adicionar' ou 'remover'.");
+                adicionarOuRemoverItem(); 
+            }
+        }
+
+        function adicionarItem() {
+            let adicionar = prompt("Deseja adicionar uma comida na sua lista de compras? (sim ou não)").toLowerCase();
+
+            if (adicionar === "sim") {
+                let comida = prompt("Qual comida você deseja adicionar?");
+                let categoria = prompt("Em qual categoria ela se encaixa? (frutas, laticínios, congelados, doces, outros)");
+
+                if (listaDeCompras[categoria]) {
+                    listaDeCompras[categoria].push(comida);
+                } else {
+                    alert("Categoria inválida, a comida será adicionada na categoria 'outros'.");
+                    listaDeCompras.outros.push(comida);
+                }
+
+                adicionarItem();
+            } else if (adicionar === "não") {
+                exibirLista();
+            } else {
+                alert("Resposta inválida! Responda com 'sim' ou 'não'.");
+                adicionarItem(); 
+            }
+        }
+
+        function temItensNaLista() {
+            return Object.values(listaDeCompras).some(categoria => categoria.length > 0);
+        }
+
+        function removerItem() {
+            exibirLista();
+
+            let itemParaRemover = prompt("Qual comida você deseja remover?");
+
+            let itemRemovido = false;
+            for (let categoria in listaDeCompras) {
+                let index = listaDeCompras[categoria].indexOf(itemParaRemover);
+                if (index !== -1) {
+                    listaDeCompras[categoria].splice(index, 1); 
+                    alert(`O item ${itemParaRemover} foi removido da lista.`);
+                    itemRemovido = true;
+                    break;
+                }
+            }
+
+            if (!itemRemovido) {
+                alert("Não foi possível encontrar o item dentro da lista!");
+            }
+
+            adicionarOuRemoverItem();
+        }
+
+        function exibirLista() {
+            let listaFinal = "Lista de compras:\n";
+            for (let categoria in listaDeCompras) {
+                if (listaDeCompras[categoria].length > 0) {
+                    listaFinal += `${capitalizeFirstLetter(categoria)}: ${listaDeCompras[categoria].join(", ")}\n`;
+                }
+            }
+            alert(listaFinal);
+        }
+
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
+        adicionarOuRemoverItem();
+    </script>
+</body>
+</html>

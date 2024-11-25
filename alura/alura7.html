@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Simples</title>
+</head>
+<body>
+    <h1>Calculadora Simples</h1>
+    <script>
+        function soma(a, b) {
+            return a + b;
+        }
+
+        function subtracao(a, b) {
+            return a - b;
+        }
+
+        function multiplicacao(a, b) {
+            return a * b;
+        }
+
+        function divisao(a, b) {
+            if (b === 0) {
+                alert("Erro! Divisão por zero.");
+                return null;
+            }
+            return a / b;
+        }
+
+        function calcular() {
+            while (true) {
+                let operacao = prompt("Escolha a operação que deseja realizar:\n1. Soma\n2. Subtração\n3. Multiplicação\n4. Divisão\n5. Sair");
+
+                if (operacao === "5") {
+                    alert("Até a próxima!");
+                    break;
+                }
+
+                if (operacao < "1" || operacao > "5") {
+                    alert("Opção inválida. Tente novamente.");
+                    continue;
+                }
+
+                let num1 = parseFloat(prompt("Digite o primeiro número:"));
+                let num2 = parseFloat(prompt("Digite o segundo número:"));
+
+                let resultado;
+
+                if (operacao === "1") {
+                    resultado = soma(num1, num2);
+                    alert(`Resultado: ${num1} + ${num2} = ${resultado}`);
+                } else if (operacao === "2") {
+                    resultado = subtracao(num1, num2);
+                    alert(`Resultado: ${num1} - ${num2} = ${resultado}`);
+                } else if (operacao === "3") {
+                    resultado = multiplicacao(num1, num2);
+                    alert(`Resultado: ${num1} * ${num2} = ${resultado}`);
+                } else if (operacao === "4") {
+                    resultado = divisao(num1, num2);
+                    if (resultado !== null) {
+                        alert(`Resultado: ${num1} / ${num2} = ${resultado}`);
+                    }
+                }
+            }
+        }
+
+        calcular();
+    </script>
+</body>
+</html>
